@@ -1,0 +1,42 @@
+{
+    "languaje":"Languaje",
+    "spanish":"Spanish", 
+    "english":"English",
+
+    "test":"© Technical Test",
+    "store":"Store",
+    "brand":"Brands",
+    "products":"Products",
+
+
+    "list": {
+        "name": "Name",
+        "enabled": "Enabled",
+        "ID": "ID",
+        "disabled":"Disabled",
+        "status":"Status",
+        "actions":"Actions",
+        "add":"Add",
+        "edit":"Edit",
+        "delete":"Delete",
+        "upc":"UPC",
+        "current_cost":"Current Cost",
+        "profit_percentage":"Profit Percentage"
+    },
+    "form": {
+        "name": "Name",
+        "enabled": "Enabled",
+        "ID": "ID",
+        "disabled":"Disabled",
+        "status":"Status",
+        "actions":"Actions",
+        "add":"Add",
+        "edit":"Edit",
+        "delete":"Delete",
+        "upc":"UPC",
+        "current_cost":"Current Cost",
+        "profit_percentage":"Profit Percentage"
+    }
+
+    
+}

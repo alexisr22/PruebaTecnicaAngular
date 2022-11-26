@@ -1,0 +1,28 @@
+<h1>{{ "brand" | translate}}</h1>
+        <button class="btn btn-primary" routerLink="/brand/add">{{ "list.add" | translate}}</button>
+<div class="table table-striped">
+    <table>
+        <thead>
+            <th>{{ "list.ID" | translate}}</th>
+            <th>{{ "list.name" | translate}}</th>
+            <th>{{ "list.status" | translate}}</th>
+            <th>{{ "list.actions" | translate}}</th>
+    
+        </thead> 
+        <tbody *ngIf="brands.length">
+            <tr *ngFor="let item of brands">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td *ngIf="item.enable == '1'">{{ "list.enabled" | translate}}</td>
+                <td *ngIf="item.enable == '0'">{{ "list.disabled" | translate}}</td>
+                <td>
+                    <button class="btn btn-secondary" routerLink="/brand/edit/{{item.id}}">{{ "list.edit" | translate}}</button>
+                    <button class="btn btn-danger" (click)="delete(item.id)">{{ "list.delete" | translate}}</button>
+                </td>
+            </tr>
+        </tbody>   
+    </table>
+</div>
+
+
+

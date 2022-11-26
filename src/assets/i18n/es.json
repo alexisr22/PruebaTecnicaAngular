@@ -1,0 +1,42 @@
+{
+    "languaje":"Lenguaje",
+    "spanish":"Español", 
+    "english":"Ingles",
+
+    "test":"© Prueba Tecnica",
+    "store":"Tienda",
+    "brand":"Marcas",
+    "products":"Productos",
+
+    "list": {
+        "name": "Nombre",
+        "enabled": "Habilitado",
+        "ID": "ID",
+        "disabled":"Deshabilitado",
+        "status":"Estatus",
+        "actions":"Acciones",
+        "add":"Agregar",
+        "edit":"Editar",
+        "delete":"Eliminar",
+        "upc":"UPC",
+        "current_cost":"Precio",
+        "profit_percentage":"Porcentage"
+    },
+    "form": {
+        "name": "Nombre",
+        "enabled": "Habilitado",
+        "ID": "ID",
+        "disabled":"Deshabilitado",
+        "status":"Estatus",
+        "actions":"Acciones",
+        "add":"Agregar",
+        "edit":"Editar",
+        "delete":"Eliminar",
+        "upc":"UPC",
+        "current_cost":"Precio",
+        "profit_percentage":"Porcentage"
+    }
+
+
+
+}
