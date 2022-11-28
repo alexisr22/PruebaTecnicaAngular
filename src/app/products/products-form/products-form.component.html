@@ -1,38 +1,49 @@
 <h1 *ngIf="!page">{{ "list.add" | translate}}</h1>
 <h1 *ngIf="page">{{ "list.edit" | translate}}</h1>
 
-<div class="mb-3">
-    <label for="name" class="form-label">{{ "form.name" | translate}}</label>
-    <textarea class="form-control" #name rows="3" ></textarea>
-</div>
-<div class="mb-3">
-    <label for="name" class="form-label">{{ "form.upc" | translate}}</label>
-    <textarea class="form-control" #upc rows="3" ></textarea>
-</div><div class="mb-3">
-    <label for="name" class="form-label">{{ "form.current_cost" | translate}}</label>
-    <textarea class="form-control" #current_cost rows="3" ></textarea>
-</div><div class="mb-3">
-    <label for="name" class="form-label">{{ "form.profit_percentage" | translate}}</label>
-    <textarea class="form-control" #profit_percentage rows="3" ></textarea>
-</div>
-<div class="mb-3">
-    <label for="status"> {{ "list.status" | translate}}:</label><br>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input"  type="radio"
-        name="method" value=1  #status  >
-      <label class="form-check-label" for="status" >{{ "form.enabled" | translate}}</label>
-    </div>
-    <div class="form-check form-check-inline">
+<div>
+  <form [formGroup]="formGroup" (ngSubmit)="add(formGroup.value)">
+    <div class="mb-3">
+      <label for="name" class="form-label">{{ "form.name" | translate}}</label>
+      <input name="name"  class="form-control" #name rows="3" formControlName="name">
+  </div>
+  <div class="mb-3">
+      <label for="upc" class="form-label">{{ "form.upc" | translate}}</label>
+      <input name="upc" class="form-control" #upc rows="3" formControlName="upc">
+  </div><div class="mb-3">
+      <label for="current_cost" class="form-label">{{ "form.current_cost" | translate}}</label>
+      <input name="current_cost" class="form-control"  type="number" #current_cost rows="3" formControlName="current_cost" >
+  </div><div class="mb-3">
+      <label for="profit_percentage" class="form-label">{{ "form.profit_percentage" | translate}}</label>
+      <input name="profit_percentage" class="form-control" type="number" #profit_percentage rows="3" formControlName="profit_percentage">
+  </div>
+  <div class="mb-3">
+      <label for="status"> {{ "list.status" | translate}}:</label><br>
+      <div class="form-check form-check-inline">
         <input class="form-check-input"  type="radio"
-          name="method" value=0   #status >
-        <label class="form-check-label" for="status">{{ "form.disabled" | translate}}</label>
+          name="status" value=1  #status  formControlName="status">
+        <label class="form-check-label" for="status" >{{ "form.enabled" | translate}}</label>
       </div>
-</div>
-<div class="mb-3">
+      <div class="form-check form-check-inline">
+          <input class="form-check-input"  type="radio"
+            name="status" value=0   #status formControlName="status">
+          <label class="form-check-label" for="status">{{ "form.disabled" | translate}}</label>
+        </div>
+  </div>
+  <div>
+    <!-- <div>
+      <ngx-select-dropdown class="form-group" (change)="brandSelected(m)" #m [options]="brands"
+       formControlName="brand" >
+      </ngx-select-dropdown>
+    </div> -->
     <label for="name" class="form-label">{{ "brand" | translate}}</label>
-    <textarea class="form-control" #brand rows="3" ></textarea>
+    <select name="brand" formControlName="brand" > 
+      <option *ngFor="let brand of brands" value="{{brand.id}}" >{{brand.name}}</option>
+    </select>
+  </div>
+  </form>
 </div>
 <div>
-    <button class="btn btn-success" *ngIf="!page" (click)="add(name.value,upc.value,current_cost.value,profit_percentage.value,status.value,brand.value); name.value=''; upc.value='';current_cost.value='';profit_percentage.value='';status.value='';brand.value='';">{{ "list.add" | translate}}</button>     
-    <button class="btn btn-success" *ngIf="page" (click)="edit(name.value,upc.value,current_cost.value,profit_percentage.value,status.value,brand.value); name.value=''; upc.value='';current_cost.value='';profit_percentage.value='';status.value='';brand.value='';">{{ "list.edit" | translate}}</button>     
+    <button class="btn btn-success" *ngIf="!page" (click)="add(formGroup.value);">{{ "list.add" | translate}}</button>     
+    <button class="btn btn-success" *ngIf="page" (click)="edit(formGroup.value)">{{ "list.edit" | translate}}</button>     
 </div>

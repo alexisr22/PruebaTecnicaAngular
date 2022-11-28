@@ -14,6 +14,7 @@ import { BrandListComponent } from './Brand/brand-list/brand-list.component';
 import { BrandFormComponent } from './Brand/brand-form/brand-form.component';
 import { ProductsFormComponent } from './products/products-form/products-form.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
+import { SelectDropDownModule } from 'ngx-select-dropdown'
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ProductsListComponent } from './products/products-list/products-list.co
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    SelectDropDownModule,
     FormsModule,
             // ngx-translate and the loader module
     HttpClientModule,

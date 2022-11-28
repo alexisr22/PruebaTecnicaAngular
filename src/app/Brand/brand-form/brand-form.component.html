@@ -2,23 +2,27 @@
 <h1 *ngIf="page">{{ "list.edit" | translate}}</h1>
 
 <div class="mb-3">
-    <label for="name" class="form-label">{{ "form.name" | translate}}</label>
-    <textarea class="form-control" #name rows="3" ></textarea>
-</div>
-<div class="mb-3">
-    <label for="status"> {{ "form.name" | translate}}:</label><br>
+  <form [formGroup]="formGroup" (ngSubmit)="add(formGroup.value)">
+    <div class="mb-3">
+      <label for="name" class="form-label">{{ "form.name" | translate}}</label>
+      <input name="name" class="form-control" rows="3" formControlName="name" >
+    </div>
+    <label > {{ "form.name" | translate}}:</label><br>
     <div class="form-check form-check-inline">
       <input class="form-check-input"  type="radio"
-        name="method" value=1  #status  >
+        name="status" value=1  #status formControlName="status" >
       <label class="form-check-label" for="status" >{{ "form.enabled" | translate}}</label>
     </div>
     <div class="form-check form-check-inline">
         <input class="form-check-input"  type="radio"
-          name="method" value=0   #status >
+          name="status" value=0   #status formControlName="status">
         <label class="form-check-label" for="status">{{ "form.disabled" | translate}}</label>
       </div>
+  </form>
 </div>
 <div>
-    <button class="btn btn-success" *ngIf="!page" (click)="add(name.value, status.value); name.value=''; status.value=''">{{ "list.add" | translate}}</button>     
-    <button class="btn btn-success" *ngIf="page" (click)="edit(name.value, status.value); name.value=''; status.value=''">{{ "list.edit" | translate}}</button>     
+    <button class="btn btn-success" *ngIf="!page" (click)="add(formGroup.value)">{{ "list.add" | translate}}</button>     
+    <button class="btn btn-success" *ngIf="page" (click)="edit(formGroup.value)">{{ "list.edit" | translate}}</button>     
 </div>
+
+

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../products.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms'
+
 
 
 @Component({
@@ -12,9 +14,23 @@ export class ProductsFormComponent implements OnInit {
 
   data:any;
   id:any;
+  brands:any;
+  currentbrand:any;
+
 
   _url:any;
   page=true;
+
+
+  formGroup = new FormGroup({
+    name: new FormControl(''),
+    upc: new FormControl(''),
+    current_cost: new FormControl(''),
+    profit_percentage: new FormControl(''),
+    status: new FormControl(''),
+    brand: new FormControl('')
+
+  })
 
   constructor(
     private ProductsService:ProductsService,
@@ -27,6 +43,8 @@ export class ProductsFormComponent implements OnInit {
     this.id = Number(routeParams.get('id'));
     this._url = this.router.url
 
+    this.getBrands();
+
     if(this._url == '/products/add'){
     this.page = false;
     }
@@ -34,22 +52,28 @@ export class ProductsFormComponent implements OnInit {
     if(this.page == true ){
       this.ProductsService.find(this.id).subscribe((data:any)=>{
         this.data = data;
-        console.log(this.data);
       })
       }
   }
 
-  add(name:string, upc:string, current_cost:any, profit_percentage:any, status:any, brand:string){
-    parseInt(status);
+  getBrands(){
+    this.brands = this.ProductsService.brands().subscribe(data=>{
+      this.brands = data;
+    })
+  }
+
+  add(form:any){
+    parseInt(form.status);
     this.data = {
-      'name':name,
-      'upc':upc,
-      'current_cost':current_cost,
-      'profit_percentage':profit_percentage,
-      'enable':status,
-      'brand':brand
+      'name':form.name,
+      'upc':form.upc,
+      'current_cost':form.current_cost,
+      'profit_percentage':form.profit_percentage,
+      'enable':form.status,
+      'brand':form.brand
 
     };
+
     this.ProductsService.add(this.data as any).subscribe(data=>{
       this.data = data;
     });
@@ -57,17 +81,16 @@ export class ProductsFormComponent implements OnInit {
   }
 
 
-  edit(name:string, upc:string, current_cost:any, profit_percentage:any, status:any, brand:string){
-    parseInt(status);
+  edit(form:any){
+    parseInt(form.status);
     this.data = {
-      'name':name,
-      'upc':upc,
-      'current_cost':current_cost,
-      'profit_percentage':profit_percentage,
-      'enable':status,
-      'brand':brand
+      'name':form.name,
+      'upc':form.upc,
+      'current_cost':form.current_cost,
+      'profit_percentage':form.profit_percentage,
+      'enable':form.status,
+      'brand':form.brand
     };
-    console.log(this.data);
     this.ProductsService.update(this.id, this.data).subscribe((res)=>{
     this.router.navigate(['/products']);
     })

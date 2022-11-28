@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrandService } from '../brand.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 
 
 @Component({
@@ -15,6 +16,12 @@ export class BrandFormComponent implements OnInit {
 
   _url:any;
   page=true;
+
+
+  formGroup = new FormGroup({
+    name: new FormControl(''),
+    status: new FormControl('')
+  })
 
   constructor(
     private BrandService:BrandService,
@@ -35,16 +42,15 @@ export class BrandFormComponent implements OnInit {
     if(this.page == true ){
       this.BrandService.find(this.id).subscribe((data:any)=>{
         this.data = data;
-        console.log(this.data);
       })
       }
   }
 
-  add(name:string, status:any){
-    parseInt(status);
+  add(form:any){
+    parseInt(form.status);
     this.data = {
-      'name':name,
-      'enable':status
+      'name':form.name,
+      'enable':form.status
     };
     this.BrandService.addBrand(this.data as any).subscribe(data=>{
       this.data = data;
@@ -53,20 +59,16 @@ export class BrandFormComponent implements OnInit {
   }
 
 
-  edit(name:string, status:any){
-    parseInt(status);
+  edit(form:any){
+    parseInt(form.status);
     this.data = {
-      'name':name,
-      'enable':status
-
+      'name':form.name,
+      'enable':form.status
     };
-    console.log(this.data);
     this.BrandService.update(this.id, this.data).subscribe((res)=>{
     this.router.navigate(['/brand']);
     });
     this.router.navigate(['/brand']);
-
-
   }
 
 }

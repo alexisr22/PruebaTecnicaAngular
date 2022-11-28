@@ -42,6 +42,9 @@ export class ProductsService {
   delete(id:any){
     return this.http.delete<any>(this.url+'/api/products/'+ id,this.httpOptions);
   }
+  brands(){
+    return this.http.get<any>(this.url+'/api/products/brands');
+  }
 
 
 }
